@@ -63,7 +63,7 @@ class ConnectorTelegram(Connector):
                             if self.latest_update is None or \
                                     self.latest_update <= response["update_id"]:
                                 self.latest_update = response["update_id"] + 1
-                            if "text" in response["message"]:
+                            if "message" in response and "text" in response["message"]:
                                 if response["message"]["from"]["username"] == self.config.get("default_user", None):
                                     self.default_room = response["message"]["chat"]["id"]
                                 message = Message(response["message"]["text"],
